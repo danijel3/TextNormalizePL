@@ -1,6 +1,6 @@
 from typing import List
 
-from language import abbrev_set, romannumeral_set, punct_set, integer_to_text, symbol_set, roman_to_text
+from language import abbrev_set, romannumeral_set, punct_set, intstr_to_text, symbol_set, roman_to_text
 from token_types import CharClass, TokenGroup, TokenGroupClass
 
 
@@ -99,10 +99,10 @@ def verbalize(groups: List[TokenGroup]):
                 else:
                     grp.verbalized.extend(s)
         elif grp.tokenclass == TokenGroupClass.NUMBER:
-            grp.verbalized.extend(integer_to_text(grp.tokens[0]))
+            grp.verbalized.extend(intstr_to_text(grp.tokens[0]))
         elif grp.tokenclass == TokenGroupClass.ROMAN:
             grp.verbalized.extend(roman_to_text(grp.tokens[0]))
         elif grp.tokenclass == TokenGroupClass.TIME:
-            grp.verbalized.extend(integer_to_text(grp.tokens[0]))
+            grp.verbalized.extend(intstr_to_text(grp.tokens[0]))
             if len(grp.tokens) > 2:
-                grp.verbalized.extend(integer_to_text(grp.tokens[2]))
+                grp.verbalized.extend(intstr_to_text(grp.tokens[2]))
